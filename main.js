@@ -4,13 +4,14 @@ const countText = document.getElementById("time")
 const startBtn = document.getElementById("start")
 const resetBtn = document.getElementById("reset")
 const currentMode = document.getElementById("mode")
+const numberOfCycles = document.getElementById("number_of_cycles")
 
 
 let interval = null
 let breakTime = 5 * 60
 let mode = "work"
-let timer = 25*60
-
+let timer = 25 *60
+let n = 0
 
 function updateTimer(){
     let minutes = Math.floor(timer / 60)
@@ -34,6 +35,10 @@ function startTimer(){
             interval = null
 
             if(mode == "work"){
+                               n++
+                numberOfCycles.innerText = "#" + n
+                var snd = new Audio('/alarm.mp3')
+                snd.play()
                 mode = "break"
                 timer = 5 *60
                 countText.innerText = "5:00"
@@ -46,6 +51,7 @@ function startTimer(){
                 countText.innerText = "25:00"
                 currentMode.innerText = "Work"
                 startTimer()
+
             }
         return
     }
